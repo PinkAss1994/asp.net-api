@@ -54,7 +54,7 @@ namespace KarmaStore.Controllers
         [HttpPut("{id}")]
         public IActionResult PutCategory(int id, Category category)
         {
-            var cate = _context.Categories.SingleOrDefault(lo => lo.Id == id);
+            var cate = _context.Categories.SingleOrDefault(c => c.Id == id);
             if (cate != null)
             {
                 cate.Name = category.Name;
@@ -97,13 +97,15 @@ namespace KarmaStore.Controllers
         // POST: api/Categories
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Category>> PostCategory(Category category)
+        public async Task<ActionResult<Category>> PostCategory(string name )
         {
 
             if (_context.Categories == null)
             {
                 return Problem("Entity set 'shopdbContext.Categories'  is null.");
             }
+            Category category = new Category();
+            category.Name = name;
             _context.Categories.Add(category);
             await _context.SaveChangesAsync();
 
