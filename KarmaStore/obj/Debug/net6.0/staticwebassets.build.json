@@ -1,11 +1,54 @@
 {
   "Version": 1,
-  "Hash": "afJVNoIj98syjISHST6eFHXvmsjtg0c7GbSEuk8PJnA=",
+  "Hash": "73S/cfVEMd+ca6c2vVlzzR10UBnXwDyPGVSCVr3tsBw=",
   "Source": "KarmaStore",
   "BasePath": "_content/KarmaStore",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
-  "DiscoveryPatterns": [],
-  "Assets": []
+  "DiscoveryPatterns": [
+    {
+      "Name": "KarmaStore\\wwwroot",
+      "Source": "KarmaStore",
+      "ContentRoot": "C:\\Users\\lexua\\source\\repos\\asp.net-api\\KarmaStore\\wwwroot\\",
+      "BasePath": "_content/KarmaStore",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "C:\\Users\\lexua\\source\\repos\\asp.net-api\\KarmaStore\\wwwroot\\uploads\\1.jpg",
+      "SourceId": "KarmaStore",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\lexua\\source\\repos\\asp.net-api\\KarmaStore\\wwwroot\\",
+      "BasePath": "_content/KarmaStore",
+      "RelativePath": "uploads/1.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\1.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\lexua\\source\\repos\\asp.net-api\\KarmaStore\\wwwroot\\uploads\\2.1.jpg",
+      "SourceId": "KarmaStore",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\lexua\\source\\repos\\asp.net-api\\KarmaStore\\wwwroot\\",
+      "BasePath": "_content/KarmaStore",
+      "RelativePath": "uploads/2.1.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\2.1.jpg"
+    }
+  ]
 }
