@@ -1,4 +1,5 @@
-﻿using KarmaStore.DTO;
+﻿using DocumentFormat.OpenXml.Wordprocessing;
+using KarmaStore.DTO;
 using KarmaStore.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -80,48 +81,80 @@ namespace KarmaStore.Controllers
 
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> UploadImages(string id, [FromForm]UploadImages model)
+
+        public IActionResult EditProduct(string id, Product_Model model)
         {
-            Dictionary<string, string> resp = new Dictionary<string, string>();
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
             try
             {
-                //getting user from the database
-                var userobj = _context.Products.SingleOrDefault(p => p.ProductID == Guid.Parse(id));
-                if (userobj != null)
-                {
-                    //Get the complete folder path for storing the profile image inside it.  
-                    var path = Path.Combine(Path.Combine(_webHostEnvironment.WebRootPath, "uploads"));
-
-                    //checking if "images" folder exist or not exist then create it
-                    if ((!Directory.Exists(path)))
-                    {
-                        Directory.CreateDirectory(path);
-                    }
-                    //getting file name and combine with path and save it
-                    string filename = model.Images.FileName;
-                    using (var fileStream = new FileStream(Path.Combine(path, filename), FileMode.Create))
-                    {
-                        await model.Images.CopyToAsync(fileStream);
-                    }
-                    //save folder path 
-                    userobj.Images = "uploads/" + filename;
-                    //userobj.UpdatedAt = DateTime.UtcNow;
-                    await _context.SaveChangesAsync();
-                    //return api with response
-                    resp.Add("status ", "success");
+                var pro = _context.Products.SingleOrDefault(p => p.ProductID == Guid.Parse(id));
+                if (pro == null) 
+                { 
+                    return NotFound();
                 }
-
+                 if(id != pro.ProductID.ToString())
+                {
+                    return BadRequest();
+                }
+                //update
+                pro.Name = model.Name;
+                pro.Price = model.Price;
+                pro.Description = model.Description;
+                pro.color = model.color;
+                pro.Size = model.Size;
+                pro.Sale = model.Sale;
+                pro.Quantity = model.Quantity;
+                pro.CategoryID = model.CategoryID;
+                return Ok(pro);
             }
-            catch (Exception ex)
+            catch
             {
-                return BadRequest(ex.Message);
+                return BadRequest();
             }
-            return Ok(resp);
         }
+
+        //[HttpPut("{id}")]
+        //public async Task<IActionResult> UploadImages(string id, [FromForm]UploadImages model)
+        //{
+        //    Dictionary<string, string> resp = new Dictionary<string, string>();
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return BadRequest(ModelState);
+        //    }
+        //    try
+        //    {
+        //        //getting user from the database
+        //        var userobj = _context.Products.SingleOrDefault(p => p.ProductID == Guid.Parse(id));
+        //        if (userobj != null)
+        //        {
+        //            //Get the complete folder path for storing the profile image inside it.  
+        //            var path = Path.Combine(Path.Combine(_webHostEnvironment.WebRootPath, "uploads"));
+
+        //            //checking if "images" folder exist or not exist then create it
+        //            if ((!Directory.Exists(path)))
+        //            {
+        //                Directory.CreateDirectory(path);
+        //            }
+        //            //getting file name and combine with path and save it
+        //            string filename = model.Images.FileName;
+        //            using (var fileStream = new FileStream(Path.Combine(path, filename), FileMode.Create))
+        //            {
+        //                await model.Images.CopyToAsync(fileStream);
+        //            }
+        //            //save folder path 
+        //            userobj.Images = "uploads/" + filename;
+        //            //userobj.UpdatedAt = DateTime.UtcNow;
+        //            await _context.SaveChangesAsync();
+        //            //return api with response
+        //            resp.Add("status ", "success");
+        //        }
+
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return BadRequest(ex.Message);
+        //    }
+        //    return Ok(resp);
+        //}
 
         private string ProcessUploadFile(Product_Model model)
         {

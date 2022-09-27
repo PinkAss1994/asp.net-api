@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "73S/cfVEMd+ca6c2vVlzzR10UBnXwDyPGVSCVr3tsBw=",
+  "Hash": "WiNuvWrLANJCCg1E0yYfplm9IhMdBRXuxXJxVzT89lM=",
   "Source": "KarmaStore",
   "BasePath": "_content/KarmaStore",
   "Mode": "Default",
@@ -16,6 +16,23 @@
     }
   ],
   "Assets": [
+    {
+      "Identity": "C:\\Users\\lexua\\source\\repos\\asp.net-api\\KarmaStore\\wwwroot\\uploads\\0ea8f2c8-bfa8-4096-887d-70e5a6d53c5c_Chuck Taylor All Star Shoreline Knit Slip-60-1.1.jpg",
+      "SourceId": "KarmaStore",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\lexua\\source\\repos\\asp.net-api\\KarmaStore\\wwwroot\\",
+      "BasePath": "_content/KarmaStore",
+      "RelativePath": "uploads/0ea8f2c8-bfa8-4096-887d-70e5a6d53c5c_Chuck Taylor All Star Shoreline Knit Slip-60-1.1.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\0ea8f2c8-bfa8-4096-887d-70e5a6d53c5c_Chuck Taylor All Star Shoreline Knit Slip-60-1.1.jpg"
+    },
     {
       "Identity": "C:\\Users\\lexua\\source\\repos\\asp.net-api\\KarmaStore\\wwwroot\\uploads\\1.jpg",
       "SourceId": "KarmaStore",
@@ -49,6 +66,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\uploads\\2.1.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\lexua\\source\\repos\\asp.net-api\\KarmaStore\\wwwroot\\uploads\\f1ff61f0-55e7-4138-840e-c2808cfb7af6_Adidas ALPHATORSION 2.0 W-120-1.2.jpg",
+      "SourceId": "KarmaStore",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\lexua\\source\\repos\\asp.net-api\\KarmaStore\\wwwroot\\",
+      "BasePath": "_content/KarmaStore",
+      "RelativePath": "uploads/f1ff61f0-55e7-4138-840e-c2808cfb7af6_Adidas ALPHATORSION 2.0 W-120-1.2.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\f1ff61f0-55e7-4138-840e-c2808cfb7af6_Adidas ALPHATORSION 2.0 W-120-1.2.jpg"
     }
   ]
 }
