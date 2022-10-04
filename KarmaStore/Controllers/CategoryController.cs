@@ -1,5 +1,6 @@
 ﻿using KarmaStore.DTO;
 using KarmaStore.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -39,6 +40,7 @@ namespace KarmaStore.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public IActionResult CreateNew(Category_Model model)
         {
             try
@@ -58,6 +60,7 @@ namespace KarmaStore.Controllers
         }
 
         [HttpPut("{id}")]
+        [Authorize]
         public IActionResult UpdateByID(int id, Category_Model model)
         {
             var cate = _context.Category.SingleOrDefault(c => c.CategoryID == id);
@@ -75,6 +78,7 @@ namespace KarmaStore.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize]
         public IActionResult DeteleById(int id)
         {
             try

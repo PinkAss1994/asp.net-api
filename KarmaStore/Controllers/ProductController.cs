@@ -1,6 +1,7 @@
 ﻿using DocumentFormat.OpenXml.Wordprocessing;
 using KarmaStore.DTO;
 using KarmaStore.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -23,7 +24,7 @@ namespace KarmaStore.Controllers
            
         }
 
-        [HttpGet]
+        [HttpGet, Authorize]
         public IActionResult GetAll()
         {
             var pro = _context.Products.ToList();
@@ -47,6 +48,7 @@ namespace KarmaStore.Controllers
 
 
         [HttpPost("[Action]")]
+        
 
         public async Task<IActionResult> Create([FromForm] Product_Model model)
         {
@@ -90,10 +92,18 @@ namespace KarmaStore.Controllers
                 if (pro == null) 
                 { 
                     return NotFound();
+                   
                 }
                  if(id != pro.ProductID.ToString())
                 {
                     return BadRequest();
+                }
+                {
+                    //oldImgURl != newImgUrl
+                    //    {
+                    //    oldImgURl
+                    //         System.IO.File.Delete('' + oldImgURl);
+                    //}
                 }
                 //update
                 pro.Name = model.Name;
