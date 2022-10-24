@@ -14,6 +14,7 @@ namespace KarmaStore.DTO
         public DbSet<DTO_Products> Products { get; set; }
         public DbSet<DTO_User> Users { get; set; }
         public DbSet<DTO_Category> Category { get; set; }
+        public DbSet<DTO_Role> Role { get; set; }
      
         #endregion
 
@@ -30,6 +31,24 @@ namespace KarmaStore.DTO
                 entity.HasIndex(e => e.Email).IsUnique();
                 entity.Property(e => e.Email).IsRequired().HasMaxLength(150);
                 entity.Property(e => e.Name).IsRequired().HasMaxLength(150);
+                entity.Property(e => e.Role)
+                   .HasMaxLength(50)
+                   .IsUnicode(false);
+            });
+            modelBuilder.Entity<DTO_Role>(entity =>
+            {
+                entity.HasKey(e => e.RoleId);
+
+                entity.ToTable("Role");
+
+                entity.Property(e => e.RoleId)
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasColumnName("RoleId");
+
+                entity.Property(e => e.Name)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
             });
         }
     }

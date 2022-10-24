@@ -12,6 +12,7 @@ using System.Security.Cryptography;
 using System.Text;
 using BCrypt.Net;
 using System.Runtime.CompilerServices;
+using Microsoft.EntityFrameworkCore;
 
 namespace KarmaStore.Controllers
 {
@@ -47,7 +48,7 @@ namespace KarmaStore.Controllers
                         Email = model.Email,
                         Password = Sha1(model.Password),
                         Phone = model.Phone,
-                        Adress = model.Adress,
+                        Address = model.Address,
                         Name = model.Name
                     };
                     _context.Add(user);
@@ -78,22 +79,52 @@ namespace KarmaStore.Controllers
             string token = CreateToken(model);
             return Ok(token);
         }
-        //public async Task<ActionResult<User_Model>> Login(DTO_User request)
-        //{
-        //    if (user.Email != request.Email)
-        //    {
-        //        return BadRequest("email not found");
-        //    }
 
+        [HttpPost("Login2")]
+        public async Task<IActionResult> Login(string email, string password)
+        {
+           
+            if(email != null && password != null)
+            {
+                DTO_User user = await GetUser(email, password);
+                if(user != null)
+                {
+                    var claims = new[]
+                    {
+                    new Claim(JwtRegisteredClaimNames.Sub, _configuration["Jwt:Subject"]),
+                    new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+                    new Claim(JwtRegisteredClaimNames.Iat, DateTime.UtcNow.ToString()),
+                    new Claim("Name", user.Name),
+                    new Claim("Email", user.Email),
+                    new Claim("Role", user.Role)
+                    };
+                    var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));
+                    var signIn = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+                    var token = new JwtSecurityToken(
+                        _configuration["Jwt:Issuer"],
+                        _configuration["Jwt:Audience"],
+                        claims,
+                        expires: DateTime.UtcNow.AddMinutes(10),
+                        signingCredentials: signIn);
 
+                    return Ok(new JwtSecurityTokenHandler().WriteToken(token));
+                }
+                else
+                {
+                    return BadRequest("Invalid credentials");
+                }
+            }
+            else
+            {
+                return BadRequest();
+            }
+        }
 
-        //    if (!VerifyPasswordHash(request.Password, user.PasswordHash, user.PasswordSalt))
-        //    {
-        //        return BadRequest("Wrong password!");
-        //    }
-        //    string token = CreateToken(user);
-        //    return Ok(token);
-        //}
+        private async Task<DTO_User> GetUser(string email, string password)
+        {
+            return await _context.Users.FirstOrDefaultAsync(u => u.Email == email && u.Password == password);
+        }
+
 
         public static string Sha1(string password)
         {
